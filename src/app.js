@@ -34,10 +34,6 @@ app.get('', (req, res) => {
     });
 });
 
-app.get('/constants', (req, res) => {
-    res.send(constants);
-});
-
 const messages = [];
 const filter = new Filter();
 
