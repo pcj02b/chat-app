@@ -1,4 +1,4 @@
-const messagesUpdated = 'messagesUpdated';
+const messagesUpdated = 'messagesUpdatedEvent';
 const newMessage = 'newMessageEvent';
 const newNotification = 'newNotification';
 
