@@ -1,4 +1,4 @@
-import handleMessages from '../js/messages.js';
+import handleMessages from './messages.js';
 import handleNotifications from './notifications.js';
 import handleMessageForm from './messageForm.js';
 

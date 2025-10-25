@@ -1,62 +1,45 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
+import handleChatIO from './utils/handleChatIO.js';
 import hbs from 'hbs';
-import path from 'path';
 import http from 'http';
-import * as socketio from 'socket.io';
-import { Filter } from 'bad-words';
-import constants from '../public/shared/constants.js';
+import path from 'path';
 
+// constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const port = process.env.PORT || 3000;
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
-const publicPath = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../templates/views')
-const partialsPath = path.join(__dirname, '../templates/partials')
-
+// app setup
 const app = express();
 const server = http.createServer(app);
-const io = new socketio.Server(server);
-
-const port = process.env.PORT || 3000
 
 // Handlebars setup
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
+// public directory setup
+const publicPath = path.join(__dirname, '../public');
 app.use(express.static(publicPath));
 
+// setup endpoints
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Chat App',
+        mainHeading: 'Chat App',
+        messageForm: {
+            inputPlaceholder: 'Message',
+            buttonText: 'Send Message',
+        },
+        messagesHeading: 'Messages',
+        notifitionsHeading: 'Notifications'
     });
 });
 
-const messages = [];
-const filter = new Filter();
-
-io.on('connection', (socket) => {
-    socket.emit(constants.newNotification, 'Welcome!');
-    socket.emit(constants.messagesUpdated, messages);
-    socket.broadcast.emit(constants.newNotification, 'new user has joined')
-
-    socket.on(constants.newMessage, (message, callback) => {
-        if (filter.isProfane(message)){
-            callback('profanity is not allowed');
-            socket.emit('newNotification', 'Message not delivered.\nProfanity is not allowed.');
-            return;
-        }
-        messages.push(message);
-        io.emit(constants.messagesUpdated, messages);
-        callback();
-    });
-
-    socket.on('disconnect', () => {
-        io.emit(constants.newNotification, 'user has left')
-    });
-});
+handleChatIO(server);
 
 server.listen(port, () => {
     console.log("server running...");

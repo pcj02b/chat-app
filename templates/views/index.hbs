@@ -3,27 +3,25 @@
 <html>
 
 <head>
-
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
     <header>
-        <h1>{{title}}</h1>
+        <h1>{{mainHeading}}</h1>
     </header>
     <form id="MessageForm">
-        <input name="message" placeholder="message">
-        <button type="submit">Send Message</button>
+        <input name="message" placeholder="{{messageForm.inputPlaceholder}}">
+        <button type="submit">{{messageForm.buttonText}}</button>
     </form>
 
-    <h3>Messages</h3>
+    <h3>{{messagesHeading}}</h3>
     <ul id="MessageList"></ul>
 
-    <h3>Notifications</h3>
+    <h3>{{notifitionsHeading}}</h3>
     <ul id="NotificationList"></ul>
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="module" src"/shared/constants.js"></script>
-    <script type="module" src="/js/chat.js"></script>
+
+    <script type="module" src="/js/app.js"></script>
 </body>
 
 </html>
