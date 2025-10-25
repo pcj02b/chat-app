@@ -6,6 +6,7 @@ import path from 'path';
 import http from 'http';
 import * as socketio from 'socket.io';
 import { Filter } from 'bad-words';
+import constants from '../public/shared/constants.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -33,27 +34,31 @@ app.get('', (req, res) => {
     });
 });
 
+app.get('/constants', (req, res) => {
+    res.send(constants);
+});
+
 const messages = [];
 const filter = new Filter();
 
 io.on('connection', (socket) => {
-    socket.emit('newNotification', 'Welcome!');
-    socket.emit('messagesUpdated', messages);
-    socket.broadcast.emit('newNotification', 'new user has joined')
+    socket.emit(constants.newNotification, 'Welcome!');
+    socket.emit(constants.messagesUpdated, messages);
+    socket.broadcast.emit(constants.newNotification, 'new user has joined')
 
-    socket.on('newMessage', (message, callback) => {
+    socket.on(constants.newMessage, (message, callback) => {
         if (filter.isProfane(message)){
             callback('profanity is not allowed');
             socket.emit('newNotification', 'Message not delivered.\nProfanity is not allowed.');
             return;
         }
         messages.push(message);
-        io.emit('messagesUpdated', messages);
+        io.emit(constants.messagesUpdated, messages);
         callback();
     });
 
     socket.on('disconnect', () => {
-        io.emit('newNotification', 'user has left')
+        io.emit(constants.newNotification, 'user has left')
     });
 });
 
