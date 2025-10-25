@@ -1,0 +1,31 @@
+{
+  "name": "chat-app",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "chat-app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e js,hbs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcj02b/chat-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcj02b/chat-app/issues"
+  },
+  "homepage": "https://github.com/pcj02b/chat-app#readme",
+  "dependencies": {
+    "bad-words": "^4.0.0",
+    "express": "^5.1.0",
+    "hbs": "^4.2.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

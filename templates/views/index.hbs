@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <header>
+        <h1>{{title}}</h1>
+    </header>
+    <form id="MessageForm">
+        <input name="message" placeholder="message">
+        <button type="submit">Send Message</button>
+    </form>
+
+    <h3>Messages</h3>
+    <ul id="MessageList"></ul>
+
+    <h3>Notifications</h3>
+    <ul id="NotificationList"></ul>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>
