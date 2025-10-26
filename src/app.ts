@@ -1,7 +1,7 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
-import handleChatIO from './utils/handleChatIO.js';
+import handleChatIO from './utils/handleChatIO.ts';
 import hbs from 'hbs';
 import http from 'http';
 import path from 'path';

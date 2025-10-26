@@ -9,7 +9,9 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
+    "allowImportingTsExtensions": true,
 
+    "noEmit": true,
     //For Now
     "allowJs": true,
 
@@ -45,7 +47,8 @@
     "skipLibCheck": true,
   },
   "include": [
-    "./",
+    "public/**/*.ts",
+    "src/**/*.ts",
   ],
   "exclude": [
     "./dist"
