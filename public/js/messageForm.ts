@@ -1,15 +1,20 @@
-import constants from '../shared/constants.js';
+import { Socket } from "socket.io-client";
+import Constants from '../shared/constants.js';
 
 const $messageForm = document.getElementById('MessageForm');
-const $messageFormInput = $messageForm.querySelector('[name="message"]');
+const $messageFormInput : HTMLInputElement | null | undefined = $messageForm?.querySelector('[name="message"]');
 
-const handleMessageForm = (socket) => {
-    const handleMessageFromSubmit = (e) => {
+const handleMessageForm = (socket: Socket) => {
+
+    if (!$messageForm) return;
+
+    const handleMessageFromSubmit = (e: Event) => {
         e.preventDefault();
+        if (!$messageFormInput) return;
         $messageForm.setAttribute('disabled', 'disabled');
         if (!$messageFormInput.value) return;
-        socket.emit(constants.newMessage, $messageFormInput.value,
-            (error) => {
+        socket.emit(Constants.newMessage, $messageFormInput.value,
+            (error: string) => {
                 $messageForm.removeAttribute('disabled');
                 $messageFormInput.value = '';
                 $messageFormInput.focus();

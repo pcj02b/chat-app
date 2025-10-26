@@ -1,9 +1,12 @@
 // utils
-const createListItem = (innerHtml) => {
+const createListItem = (innerHtml: string) => {
     let element = document.createElement('li')
     element.innerHTML = innerHtml;
     return (element);
 };
-export default {
+
+const utils = {
     createListItem,
-}; 
+}
+
+export default utils; 

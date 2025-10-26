@@ -6,7 +6,7 @@
   "main": "app.ts",
   "scripts": {
     "start": "node src/app.ts",
-    "typecheck": "npx tsc",
+    "typecheck": "npx tsc -p src && npx tsc -p public",
     "dev": "nodemon src/app.ts -e js,hbs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,7 +24,8 @@
     "bad-words": "^4.0.0",
     "express": "^5.1.0",
     "hbs": "^4.2.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",

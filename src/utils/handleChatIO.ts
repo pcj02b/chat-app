@@ -1,5 +1,5 @@
 import * as socketio from 'socket.io';
-import constants from '../../public/shared/constants.js';
+import constants from '../../public/shared/constants.ts';
 import handleMessages from "./handleMessages.ts";
 import http from 'http';
 
