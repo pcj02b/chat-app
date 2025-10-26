@@ -1,14 +1,12 @@
-import handleMessages from './messages.js';
-import handleNotifications from './notifications.js';
-import handleMessageForm from './messageForm.js';
 
-const socket = io();
 
-// messages form
-handleMessageForm(socket);
+const signInForm = document.getElementById('JoinForm');
+const displayNameInput = signInForm.querySelector('[name="displayName"]]')
+const roomInput = signInForm.querySelector('[name="room"]]')
 
-// messages
-handleMessages(socket);
+signInForm.addEventListener('submit', (e) => {
 
-// notifications
-handleNotifications(socket);
+    e.preventDefault();
+
+
+});

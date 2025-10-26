@@ -1,10 +1,11 @@
 import { Filter } from 'bad-words';
 import constants from '../../public/shared/constants.js';
+import * as socketio from 'socket.io';
 
-const messages = [];
+const messages: string[] = [];
 const filter = new Filter();
 
-const handleMessages = (io, socket) => {
+const handleMessages = (io: socketio.Server, socket: socketio.Socket) => {
     socket.emit(constants.messagesUpdated, messages);
     socket.on(constants.newMessage, (message, callback) => {
         if (filter.isProfane(message)) {

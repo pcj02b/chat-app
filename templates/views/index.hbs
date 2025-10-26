@@ -3,6 +3,7 @@
 <html>
 
 <head>
+    <title>{{mainHeading}}</title>
     <script src="/socket.io/socket.io.js"></script>
 </head>
 
@@ -10,17 +11,13 @@
     <header>
         <h1>{{mainHeading}}</h1>
     </header>
-    <form id="MessageForm">
-        <input name="message" placeholder="{{messageForm.inputPlaceholder}}">
-        <button type="submit">{{messageForm.buttonText}}</button>
+    <form id="JoinForm" action="/chat">
+        <label for="displayName">Display Name</label>
+        <input type="text" name="displayName" placeholder="Display Name" required>
+        <label for="room">Room</label>
+        <input type="text" name="room" placeholder="Room" required>
+        <button type="submit">Join</button>
     </form>
-
-    <h3>{{messagesHeading}}</h3>
-    <ul id="MessageList"></ul>
-
-    <h3>{{notifitionsHeading}}</h3>
-    <ul id="NotificationList"></ul>
-
     <script type="module" src="/js/app.js"></script>
 </body>
 

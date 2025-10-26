@@ -27,6 +27,18 @@ const publicPath = path.join(__dirname, '../public');
 app.use(express.static(publicPath));
 
 // setup endpoints
+app.get('/chat', (req, res) => {
+    res.render('chat', {
+        mainHeading: 'Chat App',
+        messageForm: {
+            inputPlaceholder: 'Message',
+            buttonText: 'Send Message',
+        },
+        messagesHeading: 'Messages',
+        notifitionsHeading: 'Notifications'
+    });
+});
+
 app.get('', (req, res) => {
     res.render('index', {
         mainHeading: 'Chat App',

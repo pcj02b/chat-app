@@ -1,8 +1,9 @@
 import * as socketio from 'socket.io';
 import constants from '../../public/shared/constants.js';
 import handleMessages from "./handleMessages.js";
+import http from 'http';
 
-const handleChatIO = (server) => {
+const handleChatIO = (server: http.Server) => {
     const io = new socketio.Server(server);
     io.on('connection', (socket) => {
         socket.emit(constants.newNotification, 'Welcome!');
