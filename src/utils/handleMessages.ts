@@ -1,5 +1,5 @@
 import { Filter } from 'bad-words';
-import constants from '../../public/shared/constants.ts';
+import constants from '../../shared/constants.ts';
 import * as socketio from 'socket.io';
 
 const messages: string[] = [];

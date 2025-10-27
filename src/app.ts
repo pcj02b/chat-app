@@ -9,9 +9,12 @@ import path from 'path';
 // constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+console.log('__dirname', __dirname);
+
 const port = process.env.PORT || 3000;
-const viewsPath = path.join(__dirname, '../templates/views');
-const partialsPath = path.join(__dirname, '../templates/partials');
+const viewsPath = path.resolve(__dirname, '../ui/templates/views');
+const partialsPath = path.resolve(__dirname, '../ui/templates/partials');
 
 // app setup
 const app = express();
@@ -23,7 +26,10 @@ app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 
 // public directory setup
-const publicPath = path.join(__dirname, '../public');
+const publicPath = path.resolve(__dirname, '../ui/dist');
+console.log('publicPath', publicPath);
+
+
 app.use(express.static(publicPath));
 
 // setup endpoints

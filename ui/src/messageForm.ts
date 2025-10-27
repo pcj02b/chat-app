@@ -1,5 +1,5 @@
 import { Socket } from "socket.io-client";
-import Constants from '../shared/constants.js';
+import Constants from '../../shared/constants.js';
 
 const $messageForm = document.getElementById('MessageForm');
 const $messageFormInput : HTMLInputElement | null | undefined = $messageForm?.querySelector('[name="message"]');

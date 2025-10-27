@@ -1,8 +1,8 @@
 import { io } from "socket.io-client";
 
-import handleMessages from './messages.js';
-import handleNotifications from './notifications.js';
-import handleMessageForm from './messageForm.js';
+import handleMessages from './messages.ts';
+import handleNotifications from './notifications.ts';
+import handleMessageForm from './messageForm.ts';
 
 const socket = io();
 

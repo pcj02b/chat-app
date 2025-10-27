@@ -1,5 +1,5 @@
 import utils from './utils.js';
-import constants from '../shared/constants.js';
+import Constants from '../../shared/constants.js';
 import type { Socket } from 'socket.io-client';
 
 const $notificationList = document.getElementById('NotificationList');
@@ -15,7 +15,7 @@ const handleNotifications = (socket: Socket) => {
             const notificationElements = notifications.map(utils.createListItem);
             $notificationList.replaceChildren(...notificationElements);
         };
-        socket.on(constants.newNotification, handleNewNotification);
+        socket.on(Constants.newNotification, handleNewNotification);
     }
 };
 
