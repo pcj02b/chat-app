@@ -1,12 +1,13 @@
 import { Socket } from "socket.io-client";
 import utils from './utils.js';
 import Constants from '../../shared/constants.js';
+import type { Message } from "../../shared/message";
 
 const $messageList = document.getElementById('MessageList');
 
-const handleMessagesUpdated = (messages: string[]) => {
+const handleMessagesUpdated = (messages: Message[]) => {
     if ($messageList) {
-        const messageElements = messages.map(utils.createListItem);
+        const messageElements = messages.map(utils.createMessageItem);
         $messageList.replaceChildren(...messageElements);
     }
 };

@@ -1,12 +1,22 @@
+import type { Message } from "../../shared/message";
+
 // utils
-const createListItem = (innerHtml: string) => {
+const createMessageItem = (message: Message) => {
     let element = document.createElement('li')
-    element.innerHTML = innerHtml;
+    console.log('creating message item', message)
+    element.innerHTML = message.Text;
+    return (element);
+};
+
+const createNotificationItem = (notification: string) => {
+    let element = document.createElement('li')
+    element.innerHTML = notification;
     return (element);
 };
 
 const utils = {
-    createListItem,
+    createMessageItem,
+    createNotificationItem
 }
 
 export default utils; 

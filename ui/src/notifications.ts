@@ -12,7 +12,7 @@ const handleNotifications = (socket: Socket) => {
             if (notifications.length >= maxNotifications)
                 notifications.shift();
             notifications.push(notification);
-            const notificationElements = notifications.map(utils.createListItem);
+            const notificationElements = notifications.map(utils.createNotificationItem);
             $notificationList.replaceChildren(...notificationElements);
         };
         socket.on(Constants.newNotification, handleNewNotification);

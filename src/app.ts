@@ -2,6 +2,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import handleChatIO from './utils/handleChatIO.ts';
+import handleDB from './utils/handleDB.ts';
 import hbs from 'hbs';
 import http from 'http';
 import path from 'path';
@@ -9,8 +10,6 @@ import path from 'path';
 // constants
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-console.log('__dirname', __dirname);
 
 const port = process.env.PORT || 3000;
 const viewsPath = path.resolve(__dirname, '../ui/templates/views');
@@ -27,8 +26,6 @@ hbs.registerPartials(partialsPath);
 
 // public directory setup
 const publicPath = path.resolve(__dirname, '../ui/dist');
-console.log('publicPath', publicPath);
-
 
 app.use(express.static(publicPath));
 
@@ -59,7 +56,9 @@ app.get('', (req, res) => {
 
 handleChatIO(server);
 
-server.listen(port, () => {
-    console.log("server running...");
-    console.log("http://localhost:" + port);
+handleDB.ConnectToDB().then(() => {
+    server.listen(port, () => {
+        console.log("server running...");
+        console.log("http://localhost:" + port);
+    });
 });
